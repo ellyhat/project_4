@@ -27,7 +27,6 @@ app.use(bodyParser.json());
 const database = require("./database.js");
 
 //Test that connection to PORT is active
-
 app.listen(PORT, () => {
   console.log(`server is listening on ${PORT}`);
 });
@@ -47,5 +46,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-  res.render("form");
+  res.render("pages/form", {
+    title: "Form page",
+  });
 });

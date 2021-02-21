@@ -13,8 +13,11 @@ CREATE TABLE IF NOT EXISTS users (
 
 CREATE TABLE IF NOT EXISTS schedules (
     unique_key serial PRIMARY KEY,
-    ID_user INT NOT NULL,
+    user_id INT,
     week_day INT CHECK (week_day >= 1 AND week_day <= 7),
     start_at TIMESTAMPTZ NOT NULL,
-    end_at TIMESTAMPTZ NOT NULL
+    end_at TIMESTAMPTZ NOT NULL,
+    CONSTRAINT fk_user
+        FOREIGN KEY(user_id) 
+            REFERENCES users(user_id)
 );

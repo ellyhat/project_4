@@ -11,6 +11,11 @@ Elle:
 "create-tables": "sudo -u postgres psql postgres -h localhost -d project_4 -f sql/create_users_table.sql",
 "seed-tables": "sudo -u postgres psql postgres -h localhost -d project_4 -f sql/seed_users_table.sql",
 
+Run commands in console in folder:
+npm run create-database
+npm run create-tables
+npm run seed-tables
+
 ##2 - packages to see ejs
 npm install -s ejs
 
