@@ -1,3 +1,7 @@
+DROP TABLE IF EXISTS users;
+
+DROP TABLE IF EXISTS schedules;
+
 CREATE TABLE users (
     user_id serial PRIMARY KEY,
     surname VARCHAR(50) NOT NULL,
@@ -5,10 +9,12 @@ CREATE TABLE users (
     email VARCHAR(100) NOT NULL,
     psw VARCHAR(100) NOT NULL
 );
+
+
 CREATE TABLE schedules (
-    user_id serial PRIMARY KEY,
-    ID_user INTEGER(100) NOT NULL,
-    week_day VARCHAR(50) NOT NULL,
-    start_at TIMESTAMP WITH TIME ZONE(100) NOT NULL,
-    end_at TIMESTAMP WITH TIME ZONE(100) NOT NULL
+    unique_key serial PRIMARY KEY,
+    ID_user INT NOT NULL,
+    week_day INT CHECK (week_day >= 1 AND week_day <= 7),
+    start_at TIMESTAMPTZ NOT NULL,
+    end_at TIMESTAMPTZ NOT NULL
 );
