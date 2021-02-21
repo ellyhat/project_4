@@ -1,0 +1,33 @@
+@font-face {
+  font-family: signika;
+  src: url("fonts/Signika-Medium.ttf");
+}
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: signika;
+  color: #2f3542;
+}
+header {
+  display: flex;
+  margin: 0;
+  padding: 10px 20px;
+  align-items: center;
+  background-color: #f4e3e3;
+}
+body {
+  background-color: #f4f4f4;
+}
+footer {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 10px 20px;
+  align-items: center;
+  background-color: #fdcb6e;
+}
+.wrapper {
+  flex: 1 0 auto;
+}
