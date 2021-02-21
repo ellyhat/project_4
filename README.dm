@@ -12,6 +12,7 @@ Elle:
 "seed-tables": "sudo -u postgres psql postgres -h localhost -d project_4 -f sql/seed_users_table.sql",
 
 Run commands in console in folder:
+dropdb project_4
 npm run create-database
 npm run create-tables
 npm run seed-tables
