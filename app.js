@@ -22,6 +22,7 @@ app.use("/static", express.static(path.join(__dirname, "public")));
 app.use(expressLayouts);
 app.set("layout", "./layouts/full-width");
 
+app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 //Add database
 const database = require("./database.js");
@@ -46,7 +47,24 @@ app.get("/", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-  res.render("pages/form", {
+  res.render("pages/login", {
     title: "Form page",
   });
+});
+
+app.post("/login", (req, res) => {
+  const password = req.body.psw;
+  const passwordEncr = crypto
+    .createHash("sha256")
+    .update(password)
+    .digest("hex");
+  const currentUser = {
+    email: req.body.email,
+    psw: passwordEncr,
+  };
+
+  //compare if there are any user like that
+  //database.users=== currentUser ?
+  console.log(currentUser);
+  res.redirect("/");
 });

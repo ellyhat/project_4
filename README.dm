@@ -36,3 +36,5 @@ npm install -s express
 
 ##7 - promise package for databases
 npm install -s pg-promise
+
+npm install -s body-parser
