@@ -31,6 +31,9 @@ app.use("/routes/logout", logoutRouter);
 const schedulesRouter = require("./routes/schedules");
 app.use("/routes/schedules", schedulesRouter);
 
+const signupRouter = require("./routes/signup");
+app.use("/routes/signup", signupRouter);
+
 //DESIGN
 app.use("/static", express.static(path.join(__dirname, "public")));
 app.use(expressLayouts);
@@ -65,4 +68,4 @@ app.listen(PORT, () => {
 app.use("/login", loginRouter);
 app.use("/", indexRouter);
 app.use("/logout", logoutRouter);
-app.use("/schedules", schedulesRouter);
+app.use("/signup", signupRouter);
