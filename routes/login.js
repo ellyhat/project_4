@@ -2,16 +2,26 @@ const express = require("express");
 const router = express.Router();
 const crypto = require("crypto");
 const app = express();
+const redis = require("redis");
+const session = require("express-session");
+const redisStore = require("connect-redis")(session);
 
 const database = require("../database.js");
 
-router.get("/", (req, res) => {
+const redirectHome = (req, res, next) => {
+  if (req.session.userId) {
+    res.redirect("/");
+  } else {
+    next();
+  }
+};
+router.get("/", redirectHome, (req, res) => {
   res.render("pages/login", {
     title: "Form page",
   });
 });
 
-router.post("/", (req, res) => {
+router.post("/", redirectHome, (req, res) => {
   const password = req.body.psw;
   const passwordEncr = crypto
     .createHash("sha256")
@@ -32,19 +42,21 @@ router.post("/", (req, res) => {
     currentUser.psw +
     "' ;";
 
+  const getUserId =
+    "SELECT user_id FROM users WHERE email = '" + currentUser.email + "';";
   database
     .any(query)
     .then((result) => {
-      console.log(result);
       if (result.length > 0) {
-        console.log("you have a match");
-        res.redirect("/");
+        database.any(getUserId).then((resultID) => {
+          req.session.userId = resultID[0].user_id;
+          //req.session.userId = resultUserId;
+          return res.redirect("/schedules");
+        });
       } else res.send("Error");
     })
     .catch((err) => {
-      res.render("pages/error", {
-        err: err,
-      });
+      res.send("error");
     });
 });
 

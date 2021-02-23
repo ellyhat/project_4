@@ -25,19 +25,32 @@ app.use("/routes/login", loginRouter);
 const indexRouter = require("./routes/index");
 app.use("/routes/index", indexRouter);
 
+const logoutRouter = require("./routes/logout");
+app.use("/routes/logout", logoutRouter);
+
+const schedulesRouter = require("./routes/schedules");
+app.use("/routes/schedules", schedulesRouter);
+
 //DESIGN
 app.use("/static", express.static(path.join(__dirname, "public")));
 app.use(expressLayouts);
 app.set("layout", "./layouts/full-width");
-
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+const twoHours = 1000 * 60 * 60 * 2;
+
 app.use(
   session({
-    secret: "ssshhhhh",
-    saveUninitialized: false,
+    name: "sid",
     resave: false,
+    cookie: {
+      maxAge: twoHours,
+      sameSite: true,
+    },
+    secret: "shh/its1asecret",
+    saveUninitialized: false,
+    //secure:false
   })
 );
 
@@ -51,3 +64,5 @@ app.listen(PORT, () => {
 
 app.use("/login", loginRouter);
 app.use("/", indexRouter);
+app.use("/logout", logoutRouter);
+app.use("/schedules", schedulesRouter);

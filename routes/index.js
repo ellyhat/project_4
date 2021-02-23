@@ -2,16 +2,14 @@ const express = require("express");
 const router = express.Router();
 const crypto = require("crypto");
 const app = express();
-let sess;
 const database = require("../database.js");
+//const redis = require("redis");
+const session = require("express-session");
+//const redisStore = require("connect-redis")(session);
 
 router.get("/", (req, res) => {
-  sess = req.session;
-  database.any("SELECT * from schedules;").then((scheduleTable) => {
-    res.render("pages/index", {
-      schedule: scheduleTable,
-      title: "Home page",
-    });
+  res.render("pages/index", {
+    title: "Welcome to our page",
   });
 });
 

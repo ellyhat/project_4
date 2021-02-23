@@ -7,13 +7,10 @@
     <title>List of all schedules</title>
   </head>
   <body>
-    <h1>List</h1>
-    <ul>
-    <%for ( let i = 0; i<schedule.length; i++){ %> 
-        <li><%= schedule[i].unique_key%><%= schedule[i].ID_user%><%= schedule[i].week_day%><%= schedule[i].start_at%><%= schedule[i].end_at%></li>
-        
-        <%}%>
-    </ul>
-    <a href="/login">Login into your acc</a>
+    <h1>Welcome to our amazing website!</h1>
+    <h2>Please log in or sign up to see all possibilities</h2>
+
+    <button><a href="/login">Log in</a></button>
+    <button><a href="/signup">Sign up</a></button>
   </body>
 </html>
