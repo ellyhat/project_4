@@ -54,10 +54,10 @@ router.post("/", redirectHome, (req, res) => {
           //req.session.userId = resultUserId;
           return res.redirect("/schedules");
         });
-      } else res.send("Error");
+      } else res.render("pages/error", { title: "Error", err: err });
     })
     .catch((err) => {
-      res.send("error");
+      res.render("pages/error", { title: "Error", err: err });
     });
 });
 
