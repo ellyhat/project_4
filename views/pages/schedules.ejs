@@ -8,6 +8,7 @@
   </head>
   <body>
     <h1>Welcome!</h1>
+    <h2>Dear <%= userName %></h2>
     <ul>
     <%for ( let i = 0; i<schedule.length; i++){ %> 
         <li><%= schedule[i].unique_key%><%= schedule[i].ID_user%><%= schedule[i].week_day%><%= schedule[i].start_at%><%= schedule[i].end_at%></li>

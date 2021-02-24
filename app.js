@@ -69,3 +69,4 @@ app.use("/login", loginRouter);
 app.use("/", indexRouter);
 app.use("/logout", logoutRouter);
 app.use("/signup", signupRouter);
+app.use("/schedules", schedulesRouter);

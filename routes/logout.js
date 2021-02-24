@@ -36,7 +36,7 @@ router.get("/", redirectLogin, (req, res) => {
       return res.redirect("/");
     }
     res.clearCookie("sid");
-    res.redirect("/");
+    res.redirect("/login");
   });
 });
 

@@ -15,6 +15,7 @@ const redirectHome = (req, res, next) => {
     next();
   }
 };
+
 router.get("/", redirectHome, (req, res) => {
   res.render("pages/login", {
     title: "Form page",

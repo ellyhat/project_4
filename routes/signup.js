@@ -22,7 +22,15 @@ app.use(
   })
 );
 
-router.get("/", (req, res) => {
+const redirectHome = (req, res, next) => {
+  if (req.session.userId) {
+    res.redirect("/");
+  } else {
+    next();
+  }
+};
+
+router.get("/", redirectHome, (req, res) => {
   res.render("pages/signup", {
     title: "Sign up page",
   });
