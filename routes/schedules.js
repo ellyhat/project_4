@@ -3,9 +3,7 @@ const router = express.Router();
 const crypto = require("crypto");
 const app = express();
 const database = require("../database.js");
-//const redis = require("redis");
 const session = require("express-session");
-//const redisStore = require("connect-redis")(session);
 
 const redirectLogin = (req, res, next) => {
   if (!req.session.userId) {

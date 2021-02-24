@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 
-CREATE TABLE IF NOT EXISTS schedules (
+CREATE TABLE IF NOT EXISTS schedules ( --cascades to drop (look into)
     unique_key serial PRIMARY KEY,
     user_id INT,
     week_day INT CHECK (week_day >= 1 AND week_day <= 7),
@@ -21,3 +21,8 @@ CREATE TABLE IF NOT EXISTS schedules (
         FOREIGN KEY(user_id) 
             REFERENCES users(user_id)
 );
+
+CREATE TABLE combined AS 
+SELECT users.*, schedules.unique_key, schedules.week_day, schedules.start_at, schedules.end_at 
+FROM users LEFT JOIN schedules ON 
+users.user_id = schedules.user_id; --Combined table joined on user id

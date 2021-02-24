@@ -5,10 +5,7 @@ const crypto = require("crypto");
 const morgan = require("morgan");
 const path = require("path");
 const expressLayouts = require("express-ejs-layouts");
-const redis = require("redis");
 const session = require("express-session");
-const redisStore = require("connect-redis")(session);
-const client = redis.createClient();
 
 const dotenv = require("dotenv");
 dotenv.config();
@@ -34,12 +31,18 @@ app.use("/routes/schedules", schedulesRouter);
 const signupRouter = require("./routes/signup");
 app.use("/routes/signup", signupRouter);
 
+const scheduleManagerRouter = require("./routes/schedule-manager");
+app.use("/routes/schedule-manager", scheduleManagerRouter);
+
 //DESIGN
 app.use("/static", express.static(path.join(__dirname, "public")));
 app.use(expressLayouts);
 app.set("layout", "./layouts/full-width");
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+
+//Initialise session 
 
 const twoHours = 1000 * 60 * 60 * 2;
 
@@ -65,8 +68,11 @@ app.listen(PORT, () => {
   console.log(`server is listening on ${PORT}`);
 });
 
+//Shorthand for pages in the apps
+
 app.use("/login", loginRouter);
 app.use("/", indexRouter);
 app.use("/logout", logoutRouter);
 app.use("/signup", signupRouter);
 app.use("/schedules", schedulesRouter);
+app.use("/schedule-manager", scheduleManagerRouter);

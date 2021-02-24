@@ -2,15 +2,13 @@ const express = require("express");
 const router = express.Router();
 const crypto = require("crypto");
 const app = express();
-const redis = require("redis");
 const session = require("express-session");
-const redisStore = require("connect-redis")(session);
 
 const database = require("../database.js");
 
 const redirectHome = (req, res, next) => {
   if (req.session.userId) {
-    res.redirect("/");
+    res.redirect("/"); //if logged in already, redirect them to home page
   } else {
     next();
   }
@@ -51,7 +49,6 @@ router.post("/", redirectHome, (req, res) => {
       if (result.length > 0) {
         database.any(getUserId).then((resultID) => {
           req.session.userId = resultID[0].user_id;
-          //req.session.userId = resultUserId;
           return res.redirect("/schedules");
         });
       } else res.render("pages/error", { title: "Error", err: err });
