@@ -7,21 +7,9 @@ const database = require("../database.js");
 const session = require("express-session");
 
 router.get("/", (req, res) => {
-  const users = "SELECT * FROM users;";
-  database
-    .any(users)
-    .then((resultUsers) => {
-      res.render("pages/index", {
-        title: "Welcome to our page",
-        users: resultUsers,
-      });
-    })
-    .catch((err) => {
-      console.error(err);
-      res.render("pages/error", {
-        err: err,
-      });
-    });
+  res.render("pages/index", {
+    title: "Welcome to our page",
+  });
 });
 
 module.exports = router;

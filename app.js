@@ -39,8 +39,8 @@ app.use("/routes/signup", signupRouter);
 const scheduleManagerRouter = require("./routes/schedule-manager");
 app.use("/routes/schedule-manager", scheduleManagerRouter);
 
-//const useridRouter = require("./routes/userid");
-//app.use("/routes/user/:userid(\\d+)/", useridRouter);
+// const useridRouter = require("./routes/userid");
+// app.use("/routes/user/:userid(\\d+)/", useridRouter);
 
 //DESIGN
 app.use("/static", express.static(path.join(__dirname, "public")));
@@ -62,7 +62,7 @@ app.use(
       sameSite: true,
     },
     secret: "shh/its1asecret",
-    saveUninitialized: false,
+    saveUninitialized: true,
     //secure:false
   })
 );
