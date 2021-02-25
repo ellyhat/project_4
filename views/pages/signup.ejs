@@ -11,7 +11,7 @@
       <label>First name</label>
       <input type="text" name="firstname" placeholder="First name" required />
       <label>Second name</label>
-      <input type="text" name="secondname" placeholder="Second name" required />
+      <input type="text" name="surname" placeholder="Second name" required />
       <label>Email Address*</label>
       <input type="email" name="email" placeholder="Enter email" required />
       <label>Password *</label>
@@ -21,7 +21,14 @@
         placeholder="Write your password"
         required
       />
-      <input type="submit" value="Submit" />
+      <label>Password confirmation*</label>
+      <input
+        type="text"
+        name="pswCnf"
+        placeholder="Confirm your password"
+        required
+      />
+      <input type="submit" class="button" value="SIGN ME IN" />
     </form>
     <h4>Already sign up? <a href="/login">Sign in here!</a></h4>
   </body>

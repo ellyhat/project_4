@@ -9,7 +9,11 @@
   <body>
     <h1>Welcome to our amazing website!</h1>
     <h2>Please log in or sign up to see all possibilities</h2>
-
+<ul>
+  <%for (let i=0;i<users.length; i++) {%>
+  <li><a href="/login"><%= users[i].firstname%></a> <%= users[i].surname%> <%= users[i].email%></li>
+  <%}%>
+</ul>
     <button><a href="/login">Log in</a></button>
     <button><a href="/signup">Sign up</a></button>
   </body>

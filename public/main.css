@@ -5,7 +5,7 @@
 body {
   display: flex;
   flex-direction: column;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   min-height: 100vh;
   font-family: signika;
@@ -16,7 +16,7 @@ header {
   margin: 0;
   padding: 10px 20px;
   align-items: center;
-  background-color: #f4e3e3;
+  background-color: #fdcb6e;
 }
 body {
   background-color: #f4f4f4;
@@ -26,8 +26,48 @@ footer {
   margin: 0;
   padding: 10px 20px;
   align-items: center;
-  background-color: #fdcb6e;
+  background-color: #ff6b81;
 }
 .wrapper {
   flex: 1 0 auto;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 5vh auto;
+  padding: 2em;
+  width: 40vw;
+  background-color: #f4e3e3;
+  border-radius: 5px;
+  box-shadow: 0 8px 6px -2px #f2d0d0;
+  text-transform: uppercase;
+}
+label {
+  padding: 0.7em;
+  text-align: center;
+}
+input {
+  display: inline-block;
+  width: 30vw;
+  height: 1.5vh;
+  margin: 0 auto;
+  padding: 1em;
+  border-color: #f2d0d0;
+  border-radius: 5px;
+  text-align: center;
+  outline-color: #fdcb6e;
+}
+
+.button {
+  display: inline-block;
+  margin: 1.5em auto;
+  padding: 1.3em 2em;
+  border: none;
+  background-color: #ff6b81;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 5px;
+  width: 22vw;
+  box-shadow: 0 8px 6px -6px #6a7b8b;
+  line-height: 0.5em;
 }
