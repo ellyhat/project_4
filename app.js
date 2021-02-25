@@ -36,8 +36,8 @@ app.use("/routes/schedules", schedulesRouter);
 const signupRouter = require("./routes/signup");
 app.use("/routes/signup", signupRouter);
 
-const scheduleManagerRouter = require("./routes/schedule-manager");
-app.use("/routes/schedule-manager", scheduleManagerRouter);
+const scheduleManagerRouter = require("./routes/users");
+app.use("/routes/users", scheduleManagerRouter);
 
 //const useridRouter = require("./routes/userid");
 //app.use("/routes/user/:userid(\\d+)/", useridRouter);
@@ -82,5 +82,5 @@ app.use("/", indexRouter);
 app.use("/logout", logoutRouter);
 app.use("/signup", signupRouter);
 app.use("/schedules", schedulesRouter);
-app.use("/schedule-manager", scheduleManagerRouter);
+app.use("/users", scheduleManagerRouter);
 //app.use("/user/:userid(\\d+)/", scheduleManagerRouter);

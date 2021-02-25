@@ -9,11 +9,40 @@
   <body>
     <h1>Welcome to our amazing website!</h1>
     <h2>Please log in or sign up to see all possibilities</h2>
-<ul>
-  <%for (let i=0;i<users.length; i++) {%>
-  <li><a href="/login"><%= users[i].firstname%></a> <%= users[i].surname%> <%= users[i].email%></li>
-  <%}%>
-</ul>
+
+
+<% const daysOfWeek=['Monday', 'Tuesday' , 'Wednesday' , 'Thursday' , 'Friday' , 'Saturday' , 'Sunday' ] %>
+
+<h1> List of Schedules </h1>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Day</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Date</th>
+    </tr>
+    <% for(let i=0; i < scheduleTable.length; i++) { %>
+        <tr>
+            <td>
+                <a href = '\users\<%=scheduleTable[i].user_id%>'' > <%=scheduleTable[i].firstname%> <%=scheduleTable[i].surname %> </a>
+            </td>
+            <td>
+                <%= daysOfWeek[scheduleTable[i].week_day -1] %>
+            </td>
+            <td>
+                <%=scheduleTable[i].start_at %>
+            </td>
+            <td>
+                <%=scheduleTable[i].end_at %>
+            </td>
+            <td>
+              <%=scheduleTable[i].date %>
+          </td>
+        </tr>
+        <%} %>
+</table>
+
     <button><a href="/login">Log in</a></button>
     <button><a href="/signup">Sign up</a></button>
   </body>

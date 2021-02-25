@@ -6,7 +6,7 @@ const session = require("express-session");
 
 const database = require("../database.js");
 
-router.get("/", (req, res) => {
+router.get("/:userNum", (req, res) => {
 
     /*let query = 'DROP TABLE combined;'
     database.any(query)
@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
     query = 'CREATE TABLE combined AS SELECT users.*, schedules.unique_key, schedules.week_day, schedules.start_at, schedules.end_at FROM users LEFT JOIN schedules ON users.user_id = schedules.user_id;'
     database.any(query) */
 
-    const userId = req.session.userId;
+    let userId = req.params.userNum;
     console.log(userId)
 
     query = "SELECT surname, firstname, week_day, TO_CHAR(start_at, 'HH:MI am') AS start_at, TO_CHAR(end_at, 'HH:MI am') as end_at, TO_CHAR(end_at, 'DD-Month-YYYY') as date FROM combined WHERE combined.user_ID = '" + userId + "' ORDER BY date;"
@@ -27,7 +27,7 @@ router.get("/", (req, res) => {
                 title: 'Schedules List',
                 layout: './pages/layout',
                 scheduleTable: scheduleTable*/
-                res.render("pages/schedule-manager", {
+                res.render("pages/users", {
                     title: "Form page", scheduleTable: scheduleTable
                   });
             })
@@ -38,6 +38,8 @@ router.get("/", (req, res) => {
         })
 
         router.post("/", (req, res) => {
+            const userId = req.session.userId;
+            console.log(`hello + ${req.session.userId}`)
             const schedule = {
                 start_at: req.body.starttime,
                 end_at: req.body.endtime,
@@ -49,6 +51,8 @@ router.get("/", (req, res) => {
 
             const insertStart = `${schedule.date} ` + `${schedule.start_at}`
             const insertEnd = `${schedule.date} ` + `${schedule.end_at}`
+
+            console.log(insertStart)
 
 
 query = 'INSERT INTO schedules (user_id, week_day, start_at, end_at) VALUES($1,$2,$3,$4);'
@@ -79,7 +83,7 @@ database.any(query, [userId, userDetails.surname, userDetails.firstname, userDet
 
 
 
-})
+}) 
         
 
 
