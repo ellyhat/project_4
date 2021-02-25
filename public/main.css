@@ -18,7 +18,7 @@ header {
   margin: 0;
   padding: 1em;
   align-items: center;
-  background-color: #fdcb6e;
+  background-color: #f9dfb1;
 }
 header > ul {
   display: flex;
@@ -94,6 +94,24 @@ input {
   line-height: 0.5em;
   text-transform: uppercase;
 }
+.welcome_btn {
+  display: inline-block;
+  margin: 1.5em 1em 1.5em;
+  padding: 1.3em 2em;
+  border-radius: 5px;
+  width: 25vw;
+  border-color: white;
+  box-shadow: 0 8px 6px -6px #6a7b8b;
+  line-height: 0.5em;
+  background-color: white;
+}
+.welcome_btn > a {
+  font-size: 2.3em;
+  text-decoration: none;
+  font-style: none;
+  text-transform: uppercase;
+  text-shadow: 4px 4px #f9dfb1;
+}
 button {
   display: inline-block;
   margin: 1.5em auto;
@@ -148,8 +166,9 @@ ul {
   font-size: 1.3em;
 }
 .welcome > img {
-  width: 50vw;
-  height: 40vh;
+  width: 60vw;
+  height: 50vh;
+
   object-fit: contain;
 }
 table {
