@@ -19,4 +19,9 @@ VALUES ('2', '3', '2021-06-23 05:10:25+11', '2021-06-22 11:10:00+11');
 INSERT INTO schedules (user_id, week_day, start_at, end_at)
 VALUES ('3', '6', '2021-06-21 05:10:25+11', '2021-06-21 11:10:00+11');
 
+CREATE TABLE combined AS 
+SELECT users.*, schedules.week_day, schedules.start_at, schedules.end_at 
+FROM users LEFT JOIN schedules ON 
+users.user_id = schedules.user_id; --Combined table joined on user id
+
 --SUCCESSFULLY IMPLEMENT TIMESTAMPTZ DATA

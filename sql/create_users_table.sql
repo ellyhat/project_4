@@ -1,6 +1,8 @@
+DROP TABLE IF EXISTS schedules;
+
 DROP TABLE IF EXISTS users;
 
-DROP TABLE IF EXISTS schedules;
+DROP TABLE IF EXISTS combined;
 
 CREATE TABLE IF NOT EXISTS users (
     user_id serial PRIMARY KEY,
@@ -22,7 +24,3 @@ CREATE TABLE IF NOT EXISTS schedules ( --cascades to drop (look into)
             REFERENCES users(user_id)
 );
 
-CREATE TABLE combined AS 
-SELECT users.*, schedules.unique_key, schedules.week_day, schedules.start_at, schedules.end_at 
-FROM users LEFT JOIN schedules ON 
-users.user_id = schedules.user_id; --Combined table joined on user id
