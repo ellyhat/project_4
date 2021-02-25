@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Schedule Form</title>
+  <body>
+    <form action="/schedule-manager" method="POST" id = "scheduleform">
+      <label>Start Time *</label>
+      <input type="time" name="starttime" required />
+      <label>End Time *</label>
+      <input type="time" name="endtime" required />
+      <input type="submit" value="Add new schedule" />
+    </form>
+    <select name="day" id="day" form="scheduleform">
+        <option value="Monday">Monday</option>
+        <option value="Tuesday">Tuesday</option>
+        <option value="Wednesday">Wednesday</option>
+        <option value="Thursday">Thursday</option>
+        <option value="Friday">Friday</option>
+        <option value="Saturday">Saturday</option>
+        <option value="Sunday">Sunday</option>
+      </select>
+
+      <% const daysOfWeek=['Monday', 'Tuesday' , 'Wednesday' , 'Thursday' , 'Friday' , 'Saturday' , 'Sunday' ] %>
+
+    <h1> List of Schedules </h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Day</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+        </tr>
+        <% for(let i=0; i < scheduleTable.length; i++) { %>
+            <tr>
+                <td>
+                    <%=scheduleTable[i].firstname%>
+                </td>
+                <td>
+                    <%=scheduleTable[i].surname %>
+                </td>
+                <td>
+                    <%= daysOfWeek[scheduleTable[i].week_day -1] %>
+                </td>
+                <td>
+                    <%=scheduleTable[i].start_at %>
+                </td>
+                <td>
+                    <%=scheduleTable[i].end_at %>
+                </td>
+            </tr>
+            <%} %>
+    </table>
+
+  </body>
+  </html>
+

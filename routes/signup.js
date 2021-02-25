@@ -4,13 +4,6 @@ const crypto = require("crypto");
 const app = express();
 const session = require("express-session");
 
-//validation
-const { check, validationResult } = require("express-validator");
-
-//FORM VALIDATIONS
-const reName = /^(([A-za-z]+[\s]{1}[A-za-z]+)|([A-Za-z]+))$/;
-const reMail = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
-
 const twoHours = 1000 * 60 * 60 * 2;
 const database = require("../database.js");
 app.use(
