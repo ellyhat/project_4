@@ -8,16 +8,46 @@
   </head>
   <body>
     <h1>Welcome!</h1>
-    <h2>Dear <%= userName %></h2>
-    <ul>
-    <%for ( let i = 0; i<schedule.length; i++){ %> 
-        <li><%= schedule[i].unique_key%><%= schedule[i].ID_user%><%= schedule[i].week_day%><%= schedule[i].start_at%><%= schedule[i].end_at%></li>
-        
-        <%}%>
-    </ul>
-    
-    <a href="/logout">Logout</a>
-    <a href="/schedule-manager">Add a new schedule!</a>
+  
 
-  </body>
+<% const daysOfWeek=['Monday', 'Tuesday' , 'Wednesday' , 'Thursday' , 'Friday' , 'Saturday' , 'Sunday' ] %>
+
+<h1> List of Schedules </h1>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Day</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Date</th>
+    </tr>
+    <% for(let i=0; i < scheduleTable.length; i++) { %>
+        <tr>
+            <td>
+                <%=scheduleTable[i].firstname%>
+            </td>
+            <td>
+                <%=scheduleTable[i].surname %>
+            </td>
+            <td>
+                <%= daysOfWeek[scheduleTable[i].week_day -1] %>
+            </td>
+            <td>
+                <%=scheduleTable[i].start_at %>
+            </td>
+            <td>
+                <%=scheduleTable[i].end_at %>
+            </td>
+            <td>
+              <%=scheduleTable[i].date %>
+          </td>
+        </tr>
+        <%} %>
+</table>
+
+<a href="/logout">Logout</a>
+<a href="/schedule-manager">Add a new schedule!</a>
+
+</body>
 </html>
