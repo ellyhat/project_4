@@ -61,16 +61,16 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
     }
-    const emailQuery =
-      "SELECT email FROM users WHERE email = '" + req.body.email + "';";
+   /* const emailQuery =
+      "SELECT email FROM users WHERE email === '" + req.body.email + "';";
 
     database.any(emailQuery).then((emailResult) => {
-      emailResult = true;
+     emailResult = true;
       if (emailResult) {
         console.log(emailResult);
         return res.send("email is taken!");
       }
-    });
+    }); */
 
     //password encryption
     const password = req.body.psw;
