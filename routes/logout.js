@@ -2,9 +2,8 @@ const express = require("express");
 const router = express.Router();
 const crypto = require("crypto");
 const app = express();
-const redis = require("redis");
+
 const session = require("express-session");
-const redisStore = require("connect-redis")(session);
 
 const twoHours = 1000 * 60 * 60 * 2;
 const database = require("../database.js");

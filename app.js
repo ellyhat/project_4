@@ -5,13 +5,15 @@ const crypto = require("crypto");
 const morgan = require("morgan");
 const path = require("path");
 const expressLayouts = require("express-ejs-layouts");
-const redis = require("redis");
 const session = require("express-session");
-const redisStore = require("connect-redis")(session);
-const client = redis.createClient();
 
+//validation
+const { check, validationResult } = require("express-validator");
+
+//pack for reading env
 const dotenv = require("dotenv");
 dotenv.config();
+//port through env var
 const PORT = process.env.PORT;
 
 app.use(morgan("dev"));
