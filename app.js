@@ -39,6 +39,9 @@ app.use("/routes/signup", signupRouter);
 const scheduleManagerRouter = require("./routes/schedule-manager");
 app.use("/routes/schedule-manager", scheduleManagerRouter);
 
+//const useridRouter = require("./routes/userid");
+//app.use("/routes/user/:userid(\\d+)/", useridRouter);
+
 //DESIGN
 app.use("/static", express.static(path.join(__dirname, "public")));
 app.use(expressLayouts);
@@ -46,8 +49,7 @@ app.set("layout", "./layouts/full-width");
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
-//Initialise session 
+//Initialise session
 
 const twoHours = 1000 * 60 * 60 * 2;
 
@@ -81,3 +83,4 @@ app.use("/logout", logoutRouter);
 app.use("/signup", signupRouter);
 app.use("/schedules", schedulesRouter);
 app.use("/schedule-manager", scheduleManagerRouter);
+//app.use("/user/:userid(\\d+)/", scheduleManagerRouter);

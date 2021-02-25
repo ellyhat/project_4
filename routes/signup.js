@@ -3,6 +3,10 @@ const router = express.Router();
 const crypto = require("crypto");
 const app = express();
 const session = require("express-session");
+const { check, validationResult } = require("express-validator");
+
+const reName = /^(([A-za-z]+[\s]{1}[A-za-z]+)|([A-Za-z]+))$/;
+const reMail = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
 
 const twoHours = 1000 * 60 * 60 * 2;
 const database = require("../database.js");
@@ -52,19 +56,6 @@ router.post(
     }
     return true;
   }),
-
-  // // check is email taken already I CANNOT DO THAT
-
-  // check("email").custom((req => {
-
-  //    database.any(emailQuery).then((result) => {
-  //     if (result) {
-  //       return Promise.reject("E-mail already in use");
-  //     }
-  //   })
-  //   return true;
-  // }),
-
   (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -105,6 +96,7 @@ router.post(
         res.render("pages/confirmation", {
           title: "Confirmation of registration",
           newUserName: newUserName,
+          newUsersList: newUsersList,
         });
       })
       .catch((err) => {
