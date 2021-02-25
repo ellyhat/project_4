@@ -3,6 +3,7 @@ const router = express.Router();
 const crypto = require("crypto");
 const app = express();
 const database = require("../database.js");
+
 const session = require("express-session");
 
 router.get("/", (req, res) => {
