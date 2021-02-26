@@ -12,7 +12,7 @@ body {
   font-family: signika;
   color: #2f3542;
   text-align: center;
-  background-image: url("./images/img.jpg");
+  background-image: url("./img.jpg");
 }
 header {
   margin: 0;
@@ -168,7 +168,6 @@ ul {
 .welcome > img {
   width: 57vw;
   height: 50vh;
-
   object-fit: contain;
 }
 table {

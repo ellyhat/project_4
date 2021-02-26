@@ -13,13 +13,13 @@ const database = require("../database.js");
 app.use(
   session({
     name: "sid",
-    resave: false,
+    resave: true,
     cookie: {
       maxAge: twoHours,
       sameSite: true,
     },
     secret: "shh/its1asecret",
-    saveUninitialized: false,
+    saveUninitialized: true,
     //secure:false
   })
 );
@@ -56,56 +56,60 @@ router.post(
     }
     return true;
   }),
+
   (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
+      res.status(422).json({ errors: errors.array() });
+    } else {
+      const emailQuery =
+        "SELECT email FROM users WHERE email = '" + req.body.email + "';";
+
+      database
+        .many(emailQuery)
+        .then((emailResult) => {
+          // emailResult = true;
+          console.log(emailResult);
+          return res.send("email is taken!");
+        })
+        .catch((err) => {
+          const password = req.body.psw;
+          const passwordEncr = crypto
+            .createHash("sha256")
+            .update(password)
+            .digest("hex");
+          //       //create new req user
+          const newUser = [
+            req.body.surname,
+            req.body.firstname,
+            req.body.email,
+            passwordEncr,
+          ];
+          const newUserName = `${req.body.firstname} ${req.body.surname}`;
+          //inserting user into database
+          const sql =
+            "INSERT INTO users(surname, firstname, email, psw) VALUES ($1, $2, $3, $4)";
+
+          database
+            .query(sql, newUser)
+            .then((newUsersList) => {
+              res.render("pages/confirmation", {
+                title: "Confirmation of registration",
+                newUserName: newUserName,
+                newUsersList: newUsersList,
+              });
+            })
+            .catch((err) => {
+              res.render("pages/error", {
+                title: "Error",
+                err: err,
+              });
+            });
+        });
     }
-   /* const emailQuery =
-      "SELECT email FROM users WHERE email === '" + req.body.email + "';";
-
-    database.any(emailQuery).then((emailResult) => {
-     emailResult = true;
-      if (emailResult) {
-        console.log(emailResult);
-        return res.send("email is taken!");
-      }
-    }); */
-
-    //password encryption
-    const password = req.body.psw;
-    const passwordEncr = crypto
-      .createHash("sha256")
-      .update(password)
-      .digest("hex");
-    //create new req user
-    const newUser = [
-      req.body.surname,
-      req.body.firstname,
-      req.body.email,
-      passwordEncr,
-    ];
-    const newUserName = `${req.body.firstname} ${req.body.surname}`;
-    //inserting user into database
-    const sql =
-      "INSERT INTO users(surname, firstname, email, psw) VALUES ($1, $2, $3, $4)";
-
-    database
-      .query(sql, newUser)
-      .then((newUsersList) => {
-        res.render("pages/confirmation", {
-          title: "Confirmation of registration",
-          newUserName: newUserName,
-          newUsersList: newUsersList,
-        });
-      })
-      .catch((err) => {
-        res.render("pages/error", {
-          title: "Error",
-          err: err,
-        });
-      });
   }
 );
+
+//password encryption
 
 module.exports = router;

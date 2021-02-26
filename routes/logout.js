@@ -10,7 +10,7 @@ const database = require("../database.js");
 app.use(
   session({
     name: "sid",
-    resave: false,
+    resave: true,
     cookie: {
       maxAge: twoHours,
       sameSite: true,

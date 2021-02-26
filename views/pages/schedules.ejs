@@ -8,14 +8,13 @@
   </head>
   <body>
     <h1>Welcome!</h1>
-
     <% const daysOfWeek=['Monday', 'Tuesday' , 'Wednesday' , 'Thursday' ,
     'Friday' , 'Saturday' , 'Sunday' ] %>
-
     <h1>List of Schedules</h1>
     <table>
       <tr>
-        <th>Name Surname</th>
+        <th>Name</th>
+        <th>Surname</th>
         <th>Day</th>
         <th>Start Time</th>
         <th>End Time</th>
@@ -23,11 +22,8 @@
       </tr>
       <% for(let i=0; i < scheduleTable.length; i++) { %>
       <tr>
-        <td>
-          <a href="/users/<%=scheduleTable[i].user_id%>">
-            ><%=scheduleTable[i].firstname%> <%=scheduleTable[i].surname %></a
-          >
-        </td>
+        <td><%=scheduleTable[i].firstname%></td>
+        <td><%=scheduleTable[i].surname %></td>
         <td><%= daysOfWeek[scheduleTable[i].week_day -1] %></td>
         <td><%=scheduleTable[i].start_at %></td>
         <td><%=scheduleTable[i].end_at %></td>

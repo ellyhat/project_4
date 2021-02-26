@@ -50,7 +50,7 @@ router.post("/", redirectHome, (req, res) => {
       if (result.length > 0) {
         database.any(getUserId).then((resultID) => {
           req.session.userId = resultID[0].user_id;
-          return res.redirect("/schedules");
+          return res.redirect("/");
         });
       } else res.render("pages/error", { title: "Error", err: err });
     })
