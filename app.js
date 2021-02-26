@@ -19,6 +19,12 @@ const PORT = process.env.PORT;
 app.use(morgan("dev"));
 app.use(express.json());
 app.set("view engine", "ejs");
+//DESIGN
+app.use("/static", express.static(path.join(__dirname, "public")));
+app.use(expressLayouts);
+app.set("layout", "./layouts/full-width");
+app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 //Set up Routers
 const loginRouter = require("./routes/login");
@@ -36,33 +42,23 @@ app.use("/routes/schedules", schedulesRouter);
 const signupRouter = require("./routes/signup");
 app.use("/routes/signup", signupRouter);
 
+//CHANGE NAME
 const scheduleManagerRouter = require("./routes/users");
 app.use("/routes/users", scheduleManagerRouter);
 
-//const useridRouter = require("./routes/userid");
-//app.use("/routes/user/:userid(\\d+)/", useridRouter);
-
-//DESIGN
-app.use("/static", express.static(path.join(__dirname, "public")));
-app.use(expressLayouts);
-app.set("layout", "./layouts/full-width");
-app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
 //Initialise session
-
 const twoHours = 1000 * 60 * 60 * 2;
 
 app.use(
   session({
     name: "sid",
-    resave: false,
+    resave: true,
     cookie: {
       maxAge: twoHours,
       sameSite: true,
     },
     secret: "shh/its1asecret",
-    saveUninitialized: false,
+    saveUninitialized: true,
     //secure:false
   })
 );
@@ -83,4 +79,3 @@ app.use("/logout", logoutRouter);
 app.use("/signup", signupRouter);
 app.use("/schedules", schedulesRouter);
 app.use("/users", scheduleManagerRouter);
-//app.use("/user/:userid(\\d+)/", scheduleManagerRouter);

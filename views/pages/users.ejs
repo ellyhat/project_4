@@ -6,17 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>New Schedule Form</title>
   <body>
-      <a href = "/login">Please Login first</a>
-      <a href = "/logout">Logout</a>
+      <button><a href="/login">Login</a></button>
+
     <form action="/users" method="POST" id = "scheduleform">
+       <h3>To be able to add schedule please log in into your account!</h3>
       <label>Start Time *</label>
       <input type="time" name="starttime" required />
       <label>End Time *</label>
       <input type="time" name="endtime" required />
       <label>Date *</label>
       <input type="date" min="2021-03-01" max="2021-12-31" name="date" required />
-      <input type="submit" value="Add new schedule" />
-    </form>
+    
     <select name="day" id="day" form="scheduleform">
         <option value=1>Monday</option>
         <option value=2>Tuesday</option>
@@ -27,8 +27,9 @@
         <option value=7>Sunday</option>
       </select>
 
+      <input type="submit" class ="button" value="Add new schedule" />
+    </form>
       <% const daysOfWeek=['Monday', 'Tuesday' , 'Wednesday' , 'Thursday' , 'Friday' , 'Saturday' , 'Sunday' ] %>
-
     <h1> List of Schedules </h1>
     <table>
         <tr>
@@ -63,6 +64,6 @@
             <%} %>
     </table>
 
+    <button><a href="/logout">Logout</a></button>
   </body>
   </html>
-

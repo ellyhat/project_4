@@ -13,17 +13,17 @@
       <input type="time" name="endtime" required />
       <label>Date *</label>
       <input type="date" min="2021-03-01" max="2021-12-31" name="date" required />
-      <input type="submit" value="Add new schedule" />
+        <select name="day" id="day" form="scheduleform">
+            <option value=1>Monday</option>
+            <option value=2>Tuesday</option>
+            <option value=3>Wednesday</option>
+            <option value=4>Thursday</option>
+            <option value=5>Friday</option>
+            <option value=6>Saturday</option>
+            <option value=7>Sunday</option>
+        </select>
+    <input type="submit" value="Add new schedule" class="button"/>
     </form>
-    <select name="day" id="day" form="scheduleform">
-        <option value=1>Monday</option>
-        <option value=2>Tuesday</option>
-        <option value=3>Wednesday</option>
-        <option value=4>Thursday</option>
-        <option value=5>Friday</option>
-        <option value=6>Saturday</option>
-        <option value=7>Sunday</option>
-      </select>
 
       <% const daysOfWeek=['Monday', 'Tuesday' , 'Wednesday' , 'Thursday' , 'Friday' , 'Saturday' , 'Sunday' ] %>
 
