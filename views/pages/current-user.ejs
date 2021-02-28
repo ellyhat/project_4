@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Schedule Form</title>
+  <body>
+      <button><a href="/login">Login</a></button>
+<button><a href = "/">Add one more schedule</a></button>
+      <% const daysOfWeek=['Monday', 'Tuesday' , 'Wednesday' , 'Thursday' , 'Friday' , 'Saturday' , 'Sunday' ] %>
+    <h1> List of Schedules </h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Day</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Date</th>
+        </tr>
+        <% for(let i=0; i < scheduleTable.length; i++) { %>
+            <tr>
+                <td>
+                    <%=scheduleTable[i].firstname%>
+                </td>
+                <td>
+                    <%=scheduleTable[i].surname %>
+                </td>
+                <td>
+                    <%= daysOfWeek[scheduleTable[i].week_day -1] %>
+                </td>
+                <td>
+                    <%=scheduleTable[i].start_at %>
+                </td>
+                <td>
+                    <%=scheduleTable[i].end_at %>
+                </td>
+                <td>
+                    <%=scheduleTable[i].date %>
+                </td>
+            </tr>
+            <%} %>
+    </table>
+
+    <button><a href="/logout">Logout</a></button>
+  </body>
+  </html>
