@@ -19,26 +19,52 @@ header {
   padding: 0;
   align-items: center;
   background-color: #f9dfb1;
+  height: 10vh;
 }
 header > ul {
   display: flex;
-  margin: 0 2em;
-  padding: 0;
+  margin: 0 1em;
+  padding: 0.5em 0 0 0.5em;
   align-items: center;
 }
-header > ul > .header_logo > a > img {
-  width: 3vw;
-  object-fit: contain;
-}
-header > ul > .header_logo {
+
+header > ul > .home_logo {
   margin-right: auto;
 }
-header > ul > .face > a > img {
-  width: 5vw;
-  object-fit: contain;
+header > ul > li > a > div {
+  padding: 0.5em;
+  width: 4vw;
+  height: 4vh;
 }
+
+.h_logo {
+  background-image: url("./P.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+header > ul > li > a > .f_1,
+header > ul > li > a > .f_2 {
+  padding: 0.5em;
+  width: 6vw;
+  height: 6vh;
+}
+li > a > .f_1 {
+  background-image: url("./E.png");
+  background-position: center;
+
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+li > a > .f_2 {
+  background-image: url("./J.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 header > ul > li:not(:last-child):not(:first-child) {
-  margin-right: 3em;
+  margin-right: 0.5em;
 }
 
 body {
@@ -97,7 +123,7 @@ input {
 }
 .welcome_btn {
   display: inline-block;
-  margin: 1.5em 1em 1.5em;
+  margin: 0.2em 1em 1.5em;
   padding: 1.3em 2em;
   border-radius: 5px;
   width: 25vw;
@@ -106,7 +132,19 @@ input {
   line-height: 0.5em;
   background-color: white;
 }
-.welcome_btn > a {
+.logout_btn {
+  display: inline-block;
+  margin: 1.5em 1em 1.5em;
+  padding: 1.3em 2em;
+  border-radius: 5px;
+  width: 25vw;
+  border-color: #f9dfb1;
+  box-shadow: 0 8px 6px -6px #6a7b8b;
+  line-height: 0.5em;
+  background-color: #f9dfb1;
+}
+.welcome_btn > a,
+.logout_btn > a {
   font-size: 2.3em;
   text-decoration: none;
   font-style: none;

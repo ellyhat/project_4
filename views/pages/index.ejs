@@ -10,8 +10,10 @@
     <h1>Welcome to our amazing website!</h1>
         <div class="welcome">
           <img src="static/welc.png" />
+          <button class="welcome_btn"><a href="/login">Log in</a></button>
+          <button class="welcome_btn"><a href="/signup">Sign up</a></button>
         </div>
-    <h2>Please log in or sign up to see all possibilities</h2>
+    
 <% const daysOfWeek=['Monday', 'Tuesday' , 'Wednesday' , 'Thursday' , 'Friday' , 'Saturday' , 'Sunday' ] %>
 <h1> List of Schedules </h1>
 <table>
@@ -42,7 +44,6 @@
         </tr>
         <%} %>
 </table>
-    <button class="welcome_btn"><a href="/login">Log in</a></button>
-    <button class="welcome_btn"><a href="/signup">Sign up</a></button>
+<button class="logout_btn"><a href="/logout" >Logout</a></button>
   </body>
 </html>
