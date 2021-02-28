@@ -7,6 +7,7 @@ const { check, validationResult } = require("express-validator");
 
 const reName = /^(([A-za-z]+[\s]{1}[A-za-z]+)|([A-Za-z]+))$/;
 const reMail = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
+const rePsw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
 
 const twoHours = 1000 * 60 * 60 * 2;
 const database = require("../database.js");
@@ -45,9 +46,7 @@ router.post(
     check("surname").matches(reName).withMessage("must contain only letters"),
     check("firstname").matches(reName).withMessage("must contain only letters"),
     check("email").matches(reMail).withMessage("incorrect email"),
-    check("psw")
-      .isLength({ min: 5 })
-      .withMessage("must be at least 5 chars long"),
+    check("psw").matches(rePsw).withMessage("must be at least 5 chars long"),
   ],
   //check if passwor confitmation same as password
   check("psw").custom((value, { req }) => {
