@@ -15,7 +15,7 @@ const redirectLogin = (req, res, next) => {
 
 router.get("/:userNum", redirectLogin, (req, res) => {
   const userId = req.params.userNum;
-  const queryDisplayCombined = `SELECT surname, firstname, week_day, TO_CHAR(start_at, 'HH:MI am') AS start_at, TO_CHAR(end_at, 'HH:MI am') as end_at, TO_CHAR(end_at, 'DD-Month-YYYY') as date FROM combined WHERE combined.user_ID = '${userId}' ORDER BY date;`;
+  const queryDisplayCombined = `SELECT surname, firstname, unique_key, week_day, TO_CHAR(start_at, 'HH:MI am') AS start_at, TO_CHAR(end_at, 'HH:MI am') as end_at, TO_CHAR(end_at, 'DD-Month-YYYY') as date FROM combined WHERE combined.user_ID = '${userId}' ORDER BY date;`;
   database
     .any(queryDisplayCombined)
     .then((scheduleTable) => {

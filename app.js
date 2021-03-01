@@ -45,6 +45,9 @@ app.use("/routes/signup", signupRouter);
 const currentUserRouter = require("./routes/currentUser");
 app.use("/routes/currentUser", currentUserRouter);
 
+const deleteRouter = require("./routes/delete");
+app.use("/routes/delete", deleteRouter);
+
 //CHANGE NAME
 const scheduleManagerRouter = require("./routes/users");
 app.use("/routes/users", scheduleManagerRouter);
@@ -83,3 +86,4 @@ app.use("/signup", signupRouter);
 app.use("/schedules", schedulesRouter);
 app.use("/users", scheduleManagerRouter);
 app.use("/current-user", currentUserRouter);
+app.use("/delete", deleteRouter);
