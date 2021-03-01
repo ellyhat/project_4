@@ -48,7 +48,7 @@ router.post(
     check("email").matches(reMail).withMessage("incorrect email"),
     check("psw").matches(rePsw).withMessage("must be at least 5 chars long"),
   ],
-  //check if passwor confitmation same as password
+  //check if password confirmation same as password
   check("psw").custom((value, { req }) => {
     if (value !== req.body.pswCnf) {
       throw new Error("Password confirmation is incorrect");

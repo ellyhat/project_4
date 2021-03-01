@@ -52,7 +52,7 @@ router.post("/", async (req, res) => {
 			insertStart,
 			insertEnd,
 		])*/
-    const queryUserDisplay = `SELECT * FROM users WHERE user_id = '${userId}' ;`;
+    const queryUserDisplay = `SELECT * FROM users WHERE user_id = '${userId}' ORDER BY firstname;`;
     const user = await database.any(queryUserDisplay);
     const userDetails = {
       surname: user[0].surname,

@@ -4,7 +4,6 @@ const crypto = require("crypto");
 const app = express();
 const session = require("express-session");
 const database = require("../database.js");
-
 router.get("/", (req, res) => {
     let userId = req.params.userNum;
     console.log(userId); //OK
@@ -28,6 +27,4 @@ router.get("/", (req, res) => {
         });
       });
     })
-
-
 module.exports = router;
