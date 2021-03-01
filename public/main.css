@@ -143,6 +143,24 @@ input {
   line-height: 0.5em;
   background-color: #f9dfb1;
 }
+.delete_btn_frm {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  width: 7vw;
+}
+.delete_btn_frm > input {
+  width: 7vw;
+  padding: 1em;
+  background-color: #ff6b81;
+  border-radius: 5px;
+  color: white;
+  outline-color: #fdcb6e;
+  line-height: 0.4em;
+  font-family: signika;
+  box-shadow: 0 8px 6px -6px #6a7b8b;
+}
+
 .welcome_btn > a,
 .logout_btn > a {
   font-size: 2.3em;
