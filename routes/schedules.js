@@ -14,7 +14,7 @@ const redirectLogin = (req, res, next) => {
 router.get("/", redirectLogin, (req, res) => {
   const userId = req.session.userId;
   const query =
-    "SELECT firstname, surname FROM users WHERE user_id = '" + userId + "' ;";
+    "SELECT firstname, surname FROM users WHERE user_id = '" + userId + "' ORDER BY firstname;";
   let userName;
   database.any(query).then((result) => {
     //console.log(result); - just check
