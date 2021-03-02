@@ -27,7 +27,7 @@
     <% for(let i=0; i < scheduleTable.length; i++) { %>
         <tr>
             <td>
-                <a href = '\users\<%=scheduleTable[i].user_id%>'' > <%=scheduleTable[i].firstname%> <%=scheduleTable[i].surname %> </a>
+                <a href = '/users/<%=scheduleTable[i].user_id%>'' > <%=scheduleTable[i].firstname%> <%=scheduleTable[i].surname %> </a>
             </td>
             <td>
                 <%= daysOfWeek[scheduleTable[i].week_day -1] %>
