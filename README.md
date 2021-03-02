@@ -23,4 +23,4 @@ npm run create-tables
 npm run seed-tables
 
 ##2 - Install all packages outlined in package.json under "dependencies" by running the following command:
-```npm install -s <insert package name>
+```npm install -s <insert package name>```
