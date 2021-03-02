@@ -9,7 +9,7 @@ const session = require("express-session");
 router.post("/:scheduleNum", (req, res) => {
   const scheduleID = req.params.scheduleNum;
 
-  const queryDeleteSchedule = `DELETE FROM combined WHERE unique_key = '${scheduleID}' `;
+  const queryDeleteSchedule = `DELETE FROM schedules WHERE unique_key = '${scheduleID}' `;
 
   database
     .query(queryDeleteSchedule)

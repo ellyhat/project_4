@@ -58,5 +58,3 @@ router.post("/", redirectHome, (req, res) => {
       res.render("pages/error", { title: "Error", err: err });
     });
 });
-
-module.exports = router;
