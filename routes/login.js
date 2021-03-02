@@ -1,10 +1,15 @@
+//Define route for login
+
+//Install relevant packages
+
 const express = require("express");
 const router = express.Router();
 const crypto = require("crypto");
 const app = express();
 
-const session = require("express-session");
+//const session = require("express-session");
 
+//Connect SQL database
 const database = require("../database.js");
 
 const redirectHome = (req, res, next) => {
@@ -21,6 +26,7 @@ router.get("/", redirectHome, (req, res) => {
   });
 });
 
+//User login, storing their details along with encrypted password
 router.post("/", redirectHome, (req, res) => {
   const password = req.body.psw;
   const passwordEncr = crypto
@@ -31,21 +37,21 @@ router.post("/", redirectHome, (req, res) => {
     email: req.body.email,
     psw: passwordEncr,
   };
-  console.log(currentUser);
 
-  //this function is now working - checks whether email address and password match
-
-  const query =
+  //This query checks whether email addresses and password are already listed in the database
+  const emailPswMatch =
     "SELECT email FROM users WHERE email = '" +
     currentUser.email +
     "' AND psw = '" +
     currentUser.psw +
     "' ;";
 
+  //This query obtains user ID if there is an already existing database entry
   const getUserId =
     "SELECT user_id FROM users WHERE email = '" + currentUser.email + "';";
+
   database
-    .any(query)
+    .any(emailPswMatch)
     .then((result) => {
       if (result.length > 0) {
         database.any(getUserId).then((resultID) => {
@@ -58,3 +64,5 @@ router.post("/", redirectHome, (req, res) => {
       res.render("pages/error", { title: "Error", err: err });
     });
 });
+
+module.exports = router;

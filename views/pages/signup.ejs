@@ -1,47 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <% if(typeof alert != 'undefined') { %> <% alert.forEach(function(error) {
-    %>
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      <%= error.msg %>
-      
-        <span class="close" onclick="this.parentElement.style.display='none';"
-          >&times;</span
-        >
-      </button>
-    </div>
-    <% }) %> <% } %>
 
-    <form action="/signup" method="POST">
-      <label>First name</label>
-      <input type="text" name="firstname" placeholder="First name" required />
-      <label>Second name</label>
-      <input type="text" name="surname" placeholder="Second name" required />
-      <label>Email Address*</label>
-      <input type="email" name="email" placeholder="Enter email" required />
-      <label>Password *</label>
-      <input
-        type="password"
-        name="psw"
-        placeholder="Min 8 characters - 1 uppercase & 1 lowercase letters, and 1 number"
-        required
-      />
-      <label>Password confirmation*</label>
-      <input
-        type="password"
-        name="pswCnf"
-        placeholder="Confirm your password"
-        required
-      />
-      <input type="submit" class="button" value="SIGN ME UP" />
-      <h4>Already sign up? <a href="/login">Sign in here!</a></h4>
-    </form>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <% if(typeof alert !='undefined' ) { %>
+    <% alert.forEach(function(error) { %>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <%= error.msg %>
+
+          <span class="close" onclick="this.parentElement.style.display='none';">&times;</span>
+          </button>
+      </div>
+      <% }) %>
+        <% } %>
+
+          <form action="/signup" method="POST">
+            <label>First name</label>
+            <input type="text" name="firstname" placeholder="First name" required />
+            <label>Second name</label>
+            <input type="text" name="surname" placeholder="Second name" required />
+            <label>Email Address*</label>
+            <input type="email" name="email" placeholder="Enter email" required />
+            <label>Password *</label>
+            <input type="password" name="psw"
+              placeholder="Min 8 characters - 1 uppercase & 1 lowercase letters, and 1 number" required />
+            <label>Password confirmation*</label>
+            <input type="password" name="pswCnf" placeholder="Confirm your password" required />
+            <input type="submit" class="button" value="SIGN ME UP" />
+            <h4>Already sign up? <a href="/login">Sign in here!</a></h4>
+          </form>
+</body>
+
 </html>

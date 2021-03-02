@@ -1,9 +1,17 @@
+/*//Define route for schedules
+
+//Install relevant packages
+
 const express = require("express");
 const router = express.Router();
-const crypto = require("crypto");
+//const crypto = require("crypto");
 const app = express();
+//const session = require("express-session");
+
+//Connect database
 const database = require("../database.js");
-const session = require("express-session");
+
+//Redirect the user to login before creating a new schedule
 const redirectLogin = (req, res, next) => {
   if (!req.session.userId) {
     res.redirect("/login");
@@ -11,6 +19,8 @@ const redirectLogin = (req, res, next) => {
     next();
   }
 };
+
+//Get user name associated with user ID
 router.get("/", redirectLogin, (req, res) => {
   const userId = req.session.userId;
   const query =
@@ -42,4 +52,4 @@ router.get("/", redirectLogin, (req, res) => {
       });
   }
 });
-module.exports = router;
+module.exports = router;*/

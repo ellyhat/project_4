@@ -1,35 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>New Schedule Form</title>
-  <body>
-    
 
-    <form action="/users" method="POST" id = "scheduleform">
-       <h3>To be able to add schedule please log in into your account!</h3>
-      <label>Start Time *</label>
-      <input type="time" name="starttime" required />
-      <label>End Time *</label>
-      <input type="time" name="endtime" required />
-      <label>Date *</label>
-      <input type="date" min="2021-03-01" max="2021-12-31" name="date" required />
-    
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Schedule Form</title>
+
+<body>
+
+
+  <form action="/users" method="POST" id="scheduleform">
+    <h3>To be able to add schedule please log in into your account!</h3>
+    <label>Start Time *</label>
+    <input type="time" name="starttime" required />
+    <label>End Time *</label>
+    <input type="time" name="endtime" required />
+    <label>Date *</label>
+    <input type="date" min="2021-03-01" max="2021-12-31" name="date" required />
+
     <select name="day" id="day" form="scheduleform">
-        <option value=1>Monday</option>
-        <option value=2>Tuesday</option>
-        <option value=3>Wednesday</option>
-        <option value=4>Thursday</option>
-        <option value=5>Friday</option>
-        <option value=6>Saturday</option>
-        <option value=7>Sunday</option>
-      </select>
+      <option value=1>Monday</option>
+      <option value=2>Tuesday</option>
+      <option value=3>Wednesday</option>
+      <option value=4>Thursday</option>
+      <option value=5>Friday</option>
+      <option value=6>Saturday</option>
+      <option value=7>Sunday</option>
+    </select>
 
-      <input type="submit" class ="button" value="Add new schedule" />
-    </form>
-      <% const daysOfWeek=['Monday', 'Tuesday' , 'Wednesday' , 'Thursday' , 'Friday' , 'Saturday' , 'Sunday' ] %>
+    <input type="submit" class="button" value="Add new schedule" />
+  </form>
+  <% const daysOfWeek=['Monday', 'Tuesday' , 'Wednesday' , 'Thursday' , 'Friday' , 'Saturday' , 'Sunday' ] %>
     <h1> List of Schedules </h1>
     <table>
       <tr>
@@ -39,41 +41,39 @@
         <th>Start Time</th>
         <th>End Time</th>
         <th>Date</th>
-        <th>Un</th>
         <th>Delete</th>
-    </tr>
-    <% for(let i=0; i < scheduleTable.length; i++) { %>
+      </tr>
+      <% for(let i=0; i < scheduleTable.length; i++) { %>
         <tr>
-            <td>
-                <%=scheduleTable[i].firstname%>
-            </td>
-            <td>
-                <%=scheduleTable[i].surname %>
-            </td>
-            
-            <td>
-                <%= daysOfWeek[scheduleTable[i].week_day -1] %>
-            </td>
-            <td>
-                <%=scheduleTable[i].start_at %>
-            </td>
-            <td>
-                <%=scheduleTable[i].end_at %>
-            </td>
-            <td>
-                <%=scheduleTable[i].date %>
-            </td>
-            <td>
-              <%=scheduleTable[i].unique_key %>
+          <td>
+            <%=scheduleTable[i].firstname%>
           </td>
-            <td>
-              <form method="POST" action="/delete/<%=scheduleTable[i].unique_key%>" class="delete_btn_frm"><input type="submit"  value="Delete" /></form>
-            </td>
+          <td>
+            <%=scheduleTable[i].surname %>
+          </td>
+
+          <td>
+            <%= daysOfWeek[scheduleTable[i].week_day -1] %>
+          </td>
+          <td>
+            <%=scheduleTable[i].start_at %>
+          </td>
+          <td>
+            <%=scheduleTable[i].end_at %>
+          </td>
+          <td>
+            <%=scheduleTable[i].date %>
+          </td>
+          <td>
+            <form method="POST" action="/delete/<%=scheduleTable[i].unique_key%>" class="delete_btn_frm"><input
+                type="submit" value="Delete" /></form>
+          </td>
         </tr>
 
-            <%} %>
+        <%} %>
     </table>
 
     <button><a href="/logout">Logout</a></button>
-  </body>
-  </html>
+</body>
+
+</html>

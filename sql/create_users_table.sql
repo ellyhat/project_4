@@ -1,3 +1,5 @@
+--Create initial tables
+
 DROP TABLE IF EXISTS schedules;
 
 DROP TABLE IF EXISTS users;
@@ -13,7 +15,7 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 
-CREATE TABLE IF NOT EXISTS schedules ( --cascades to drop (look into)
+CREATE TABLE IF NOT EXISTS schedules ( 
     unique_key serial PRIMARY KEY,
     user_id INT,
     week_day INT CHECK (week_day >= 1 AND week_day <= 7),
