@@ -6,7 +6,9 @@ const session = require("express-session");
 const database = require("../database.js");
 router.get("/:userNum", (req, res) => {
   const userId = req.params.userNum;
-  const queryDisplayCombined = `SELECT surname, firstname, week_day, TO_CHAR(start_at, 'HH:MI am') AS start_at, TO_CHAR(end_at, 'HH:MI am') as end_at, TO_CHAR(end_at, 'DD-Month-YYYY') as date FROM combined WHERE combined.user_ID = '${userId}' ORDER BY date;`;
+
+  const queryDisplayCombined = `SELECT users.surname, schedules.unique_key, users.firstname, schedules.week_day, TO_CHAR(schedules.start_at, 'HH:MI am') AS start_at, TO_CHAR(schedules.end_at, 'HH:MI am') as end_at, TO_CHAR(schedules.end_at, 'DD-Month-YYYY') as date FROM users JOIN schedules ON schedules.user_id=users.user_id WHERE users.user_id='${userId}';`;
+
   database
     .any(queryDisplayCombined)
     .then((scheduleTable) => {
@@ -51,6 +53,7 @@ router.post("/", async (req, res) => {
       email: user[0].email,
       psw: user[0].psw,
     };
+
     const query =
       "INSERT INTO combined (user_id, surname, firstname, email, psw, week_day, start_at, end_at) VALUES($1,$2,$3,$4,$5,$6,$7,$8);";
     const insetAll = await database.any(query, [
@@ -63,7 +66,7 @@ router.post("/", async (req, res) => {
       insertStart,
       insertEnd,
     ]);
-    const queryDisplayCombined = `SELECT surname, firstname, week_day, TO_CHAR(start_at, 'HH:MI am') AS start_at, TO_CHAR(end_at, 'HH:MI am') as end_at, TO_CHAR(end_at, 'DD-Month-YYYY') as date FROM combined WHERE combined.user_ID = '${userId}' ORDER BY date;`;
+    const queryDisplayCombined = `SELECT users.surname, schedules.unique_key, users.firstname, schedules.week_day, TO_CHAR(schedules.start_at, 'HH:MI am') AS start_at, TO_CHAR(schedules.end_at, 'HH:MI am') as end_at, TO_CHAR(schedules.end_at, 'DD-Month-YYYY') as date FROM users JOIN schedules ON schedules.user_id=users.user_id WHERE users.user_id='${userId}';`;
     database.any(queryDisplayCombined).then((scheduleTable) => {
       res.render("pages/users", {
         title: "Form page",

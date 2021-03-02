@@ -8,13 +8,17 @@ const session = require("express-session");
 
 router.get("/", (req, res) => {
   let query =
-    "SELECT user_id, surname, firstname, week_day, TO_CHAR(start_at, 'HH:MI am') AS start_at, TO_CHAR(end_at, 'HH:MI am') as end_at, TO_CHAR(end_at, 'DD-Month-YYYY') as date FROM combined ORDER BY firstname, date;";
+    "SELECT users.user_id, users.surname, schedules.unique_key, users.firstname, schedules.week_day, TO_CHAR(schedules.start_at, 'HH:MI am') AS start_at, TO_CHAR(schedules.end_at, 'HH:MI am') as end_at, TO_CHAR(schedules.end_at, 'DD-Month-YYYY') as date FROM users JOIN schedules ON schedules.user_id=users.user_id;";
+
   database
     .any(query)
     .then((scheduleTable) => {
+      const userId = scheduleTable.user_id;
+      console.log(scheduleTable.user_id);
       res.render("pages/index", {
         title: "Home Page",
-        scheduleTable: scheduleTable,
+        scheduleTable,
+        userId,
       });
     })
     .catch((err) => {
