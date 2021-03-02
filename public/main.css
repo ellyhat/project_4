@@ -235,3 +235,21 @@ table {
   border-radius: 5px;
   box-shadow: 0 8px 6px -6px white;
 }
+.alert-warning {
+  display: block;
+  background-color: #ff6b81;
+  color: white;
+  padding: 1em;
+  padding: 0;
+}
+.close {
+  border-radius: 2px;
+  width: auto;
+  border-color: white;
+  box-shadow: 0 8px 6px -6px #6a7b8b;
+  padding: 0.1em;
+  color: #ff6b81;
+  background-color: white;
+  text-transform: uppercase;
+  outline-color: red;
+}

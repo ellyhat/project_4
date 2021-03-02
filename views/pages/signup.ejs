@@ -7,6 +7,18 @@
     <title>Document</title>
   </head>
   <body>
+    <% if(typeof alert != 'undefined') { %> <% alert.forEach(function(error) {
+    %>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <%= error.msg %>
+      
+        <span class="close" onclick="this.parentElement.style.display='none';"
+          >&times;</span
+        >
+      </button>
+    </div>
+    <% }) %> <% } %>
+
     <form action="/signup" method="POST">
       <label>First name</label>
       <input type="text" name="firstname" placeholder="First name" required />

@@ -43,10 +43,18 @@ router.get("/", redirectHome, (req, res) => {
 router.post(
   "/",
   [
-    check("surname").matches(reName).withMessage("must contain only letters"),
-    check("firstname").matches(reName).withMessage("must contain only letters"),
-    check("email").matches(reMail).withMessage("incorrect email"),
-    check("psw").matches(rePsw).withMessage("must be at least 5 chars long"),
+    check("surname")
+      .matches(reName)
+      .withMessage("Surname must contain only letters!"),
+    check("firstname")
+      .matches(reName)
+      .withMessage("Name must contain only letters!"),
+    check("email").matches(reMail).withMessage("Email has incorrect symbols!"),
+    check("psw")
+      .matches(rePsw)
+      .withMessage(
+        "Password must be at least 8 symbols long and include such symbols, as: number, capital and small letters. "
+      ),
   ],
   //check if password confirmation same as password
   check("psw").custom((value, { req }) => {
@@ -59,7 +67,11 @@ router.post(
   (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      res.status(422).json({ errors: errors.array() });
+      const alert = errors.array();
+      res.render("pages/signup", {
+        alert,
+        title: "Sign up page",
+      });
     } else {
       const emailQuery =
         "SELECT email FROM users WHERE email = '" + req.body.email + "';";
@@ -67,9 +79,7 @@ router.post(
       database
         .many(emailQuery)
         .then((emailResult) => {
-          // emailResult = true;
-          console.log(emailResult);
-          return res.send("email is taken!");
+          res.status(422).json({ errors: errors.array() });
         })
         .catch((err) => {
           const password = req.body.psw;
