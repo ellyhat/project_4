@@ -39,6 +39,7 @@
         <th>Start Time</th>
         <th>End Time</th>
         <th>Date</th>
+        <th>Un</th>
         <th>Delete</th>
     </tr>
     <% for(let i=0; i < scheduleTable.length; i++) { %>
@@ -62,6 +63,9 @@
             <td>
                 <%=scheduleTable[i].date %>
             </td>
+            <td>
+              <%=scheduleTable[i].unique_key %>
+          </td>
             <td>
               <form method="POST" action="/delete/<%=scheduleTable[i].unique_key%>" class="delete_btn_frm"><input type="submit"  value="Delete" /></form>
             </td>
